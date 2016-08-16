@@ -1,54 +1,42 @@
-body {
-}
-
 #map-canvas {
   height: 1000px;
-  overflow: hidden;
-}
+  overflow: hidden; }
 
 #sidebar {
   background-color: #a1a1a1;
   opacity: 0.8;
-  position:fixed;
+  position: fixed;
   top: 60px;
   right: 0;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  margin-right: 30px;
-}
+  margin-right: 30px; }
 
 .navbar {
   margin-bottom: 0;
   background-color: #583F7E;
   opacity: 0.8;
-  color: white;
-}
+  color: white; }
 
 .navbar a {
-  color: white !important;
-}
+  color: white !important; }
 
 .navbar a.active {
-  color: black !important;
-}
+  color: black !important; }
 
 .container-fluid {
-  padding: 0;
-}
+  padding: 0; }
 
 button {
   border-radius: 5px;
   background-color: #CCCCCC;
-  border:none;
-    padding: 5px;
+  border: none;
+  padding: 5px;
   border: 1px solid #a1a1a1;
   height: 30px;
-  width: 30px
-}
+  width: 30px; }
 
 #bottom-container {
   blackground-color: black;
-  opacity: 1;
-
-}
+  opacity: 1; }
