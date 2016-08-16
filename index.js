@@ -4,12 +4,15 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 
 var models = require('./models');
-var Page = models.Page;
-var User = models.User;
+
+var Place = models.Place;
+var Hotel = models.Hotel;
+var Activity = models.Activity;
+var Restaurant = models.Restaurant;
 
 var app = express();
-var wikiRouter = require('./routes/wiki');
-var usersRouter = require('./routes/users');
+// var wikiRouter = require('./routes/wiki');
+// var usersRouter = require('./routes/users');
 
 app.engine('html', swig.renderFile);
 swig.setDefaults({ cache: false });
@@ -24,21 +27,21 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/node_modules'));
 app.use(express.static(__dirname + '/public'));
 
-app.use('/wiki', wikiRouter);
-app.use('/users', usersRouter);
+// app.use('/wiki', wikiRouter);
+// app.use('/users', usersRouter);
 
-app.get('/', function (req, res) {
-    res.redirect('/wiki');
-});
+// app.get('/', function (req, res) {
+//     res.redirect('/wiki');
+// });
 
 app.use(function (err, req, res, next) {
     console.error(err);
     res.status(500).send(err.message);
 });
 
-User.sync()
+Place.sync()
     .then(function () {
-        return Page.sync();
+        return Place.sync();
     })
     .then(function () {
         app.listen(3001, function () {
