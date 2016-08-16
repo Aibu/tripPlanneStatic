@@ -2,11 +2,16 @@
 var Sequelize = require('sequelize');
 var db = new Sequelize('postgres://localhost:5432/tripplanner');
 
-var Place = require('./place');
-var Hotel = require('./hotel');
-var Activity = require('./activity');
-var Restaurant = require('./restaurant');
+var placeSettings = require('./place');
+var hotelSettings = require('./hotel');
+var activitySettings = require('./activity');
+var restaurantSettings = require('./restaurant');
 
+var Place = db.define('place', placeSettings.schemaPlace, placeSettings.optionsPlace );
+var Hotel = db.define('hotel', hotelSettings.schemaHotel, hotelSettings.optionsHotel );
+var Restaurant = db.define('restaurant', restaurantSettings.schemaRestaurant, restaurantSettings.optionsRestaurant );
+var Activity = db.define('activity', activitySettings.schemaActivity, activitySettings.optionsActivity );
+ 
 Hotel.belongsTo(Place);
 Restaurant.belongsTo(Place);
 Activity.belongsTo(Place);
@@ -18,11 +23,6 @@ module.exports = {
     Restaurant: Restaurant,
     db: db
 }
-
-// module.exports = {
-//     Page: Page,
-//     User: User
-// };
 
 
 // var Page = db.define('page', {

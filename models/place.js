@@ -1,5 +1,4 @@
 var Sequelize = require('sequelize');
-var db = new Sequelize('postgres://localhost:5432/tripplanner');
 
 var schemaPlace = {};
 
@@ -31,12 +30,13 @@ var schemaPlace = {};
     }
 
     schemaPlace.location = {
-        type: Sequelize.ARRAY(2),
+        type: Sequelize.ARRAY(Sequelize.FLOAT),
         allowNull: false
     }
 
 var optionsPlace = {};
 
-var Place = db.define('place', schemaPlace, optionsPlace );
-
-module.exports = Place
+module.exports =  {
+    schemaPlace: schemaPlace,
+    optionsPlace: optionsPlace
+}

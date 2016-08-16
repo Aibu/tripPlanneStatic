@@ -1,5 +1,4 @@
 var Sequelize = require('sequelize');
-var db = new Sequelize('postgres://localhost:5432/tripplanner');
 
 var schemaActivity = {};
 
@@ -15,6 +14,7 @@ var schemaActivity = {};
 
 var optionsActivity = {}
 
-var Activity = db.define('activity', schemaActivity, optionsActivity );
-
-module.exports = Activity;
+module.exports = {
+	schemaActivity: schemaActivity,
+	optionsActivity: optionsActivity
+}

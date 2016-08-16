@@ -1,5 +1,4 @@
 var Sequelize = require('sequelize');
-var db = new Sequelize('postgres://localhost:5432/tripplanner');
 
 var schemaHotel = {};
 
@@ -20,6 +19,7 @@ var schemaHotel = {};
 
 var optionsHotel = {};
 
-var Hotel = db.define('hotel', schemaHotel, optionsHotel );
-
-module.exports = Hotel;
+module.exports = {
+    schemaHotel: schemaHotel,
+    optionsHotel: optionsHotel
+};
