@@ -6,7 +6,154 @@
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
+
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+
+
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-8 col-md-6 col-sm-12">
+          <div id="map-canvas" style="height:400px">
+
+
+          </div>
+        </div>
+
+
+        <div class="col-lg-4 col-md-6 col-sm-12" style="background-color: green">
+
+          <!-- top right -->
+          <div>
+            <label for="hotels">Hotels</label><br/>
+            <select name="hotels" id="selectHotels">
+              <option>1</option>
+              <option>2</option>
+            </select>
+            <button>x</button>
+          </div>
+
+          <div>
+            <label for="restaurants">Restaurants</label><br/>
+            <select name="restaurants" id="selectRestaurants">
+              <option>1</option>
+              <option>2</option>
+            </select>
+            <button>x</button>
+          </div>
+
+          <div>
+            <label for="activities">Things To Do</label><br/>
+            <select name="activities" id="selectActivities">
+              <option>1</option>
+              <option>2</option>
+            </select>
+            <button>x</button>
+          </div>
+          <!-- .top right -->
+
+          <!-- bottom right -->
+          <div>
+            <!-- Day container -->
+            <h2>Day 2</h2>
+            <div class="day-container">
+              <button>1</button> <button>2</button> <button>3</button> <button>X</button>
+            </div>
+            <!-- .Day container -->
+
+            <!-- Activity container -->
+            <div>
+              <h3>My Hotel</h3>
+              <ul>
+                <li>hotel 1 <button>x</button></li>
+              </ul>
+
+              <h3>My Restaurants</h3>
+              <ul>
+                <li>restaurant 1 <button>x</button></li>
+              </ul>
+
+              <h3>My activities</h3>
+              <ul>
+                <li>activity 1 <button>x</button></li>
+              </ul>
+
+            </div>
+            <!-- .Activity container -->
+
+            <!-- .bottom right -->
+
+
+        </div>
+
+
+
+
+
+
+      </div>
+    </div>
+
     <script src="/jquery/jquery.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5FIkobdSa1Qfk-HM7ni0LressLFne5gw&amp;sensor=true"></script>
+
+    <script>
+
+    function initialize_gmaps() {
+        // initialize new google maps LatLng object
+        var myLatlng = new google.maps.LatLng(40.705189,-74.009209);
+        // set the map options hash
+        var mapOptions = {
+            center: myLatlng,
+            zoom: 16,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        // get the maps div's HTML obj
+        var map_canvas_obj = document.getElementById("map-canvas");
+        // initialize a new Google Map with the options
+        var map = new google.maps.Map(map_canvas_obj, mapOptions);
+        // Add the marker to the map
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            title:"Hello World!"
+        });
+        // Add the marker to the map by calling setMap()
+        marker.setMap(map);
+    }
+
+    $(document).ready(function() {
+        initialize_gmaps();
+    });
+  </script>
   </body>
 </html>
