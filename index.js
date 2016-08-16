@@ -2,6 +2,7 @@ var express = require('express');
 var swig = require('swig');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
+var path = require('path');
 
 var models = require('./models');
 
@@ -24,28 +25,50 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(express.static(__dirname + '/node_modules'));
 app.use(express.static(__dirname + '/public'));
-
-// app.use('/wiki', wikiRouter);
-// app.use('/users', usersRouter);
-
-// app.get('/', function (req, res) {
-//     res.redirect('/wiki');
-// });
+app.use('/jquery', express.static(path.join(__dirname, 'node_modules/jquery/dist')));
+app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
 
 app.use(function (err, req, res, next) {
     console.error(err);
     res.status(500).send(err.message);
 });
 
-Place.sync()
-    .then(function () {
-        return Place.sync();
-    })
-    .then(function () {
-        app.listen(3001, function () {
-            console.log('Server is listening on port 3001!');
-        });
-    });
+// app.get('/', function(req, res, next) {
+//     var outerScopeContainer = {};
+//     Hotel.findAll()
+//     .then(function (dbHotels) {
+//      outerScopeContainer.dbHotels = dbHotels;
+//      return Restaurant.findAll();
+//     })
+//     .then(function (dbRestaurants) {
+//      outerScopeContainer.dbRestaurants = dbRestaurants;
+//      return Activity.findAll();
+//     })
+//     .then(function (dbActivities) {
+//     //  res.render('index', {
+//     //    templateHotels: outerScopeContainer.dbHotels,
+//     //    templateRestaurants: outerScopeContainer.dbRestaurants,
+//     //    templateActivities: dbActivities
+//     //  });
+//         res.status(200).send(JSON.stringify(outerScopeContainer));
+//     })
+//     .catch(next);
+// });
 
+Place.sync({})
+.then(function() {
+    return Hotel.sync({});
+}).then(function() {
+    return Activity.sync({});
+}).then(function() {
+    return Restaurant.sync({});
+}).then(function() {
+    app.listen(3000, function() {
+        console.log('Listening on 3000.');
+    });
+}).catch(console.log);
+
+app.get('/', function(req, res, next) {
+    res.render('index');
+});
